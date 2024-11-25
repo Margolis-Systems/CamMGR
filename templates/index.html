@@ -10,6 +10,15 @@
     </style>
  </head>
  <body>
-    <img id="bg" src = "{{ url_for('video_feed') }}" style="width: 88%;">
+    <table>
+        <tr>
+            <td><img id="bg" src = "{{ url_for('video_feed') }}?index=0"></td>
+            <td><img id="bg" src = "{{ url_for('video_feed') }}?index=l"></td>
+        </tr>
+        <tr>
+            <td><img id="bg" src = "{{ url_for('video_feed') }}"></td>
+            <td><img id="bg" src = "{{ url_for('video_feed') }}"></td>
+        </tr>
+    </table>
  </body>
 </html>
