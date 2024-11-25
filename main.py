@@ -10,14 +10,15 @@ import time
 
 video = cv2.VideoCapture(0)
 app = Flask('CamMGR')
+kill = False
 
 
-def main():
-    thread = []
-    # err_log = logger.Log('errors')
-    for i in range(len(config.cameras)):
-        thread.append(CamThread(config.cameras[i]))
-        thread[i].start()
+# def main():
+#     thread = []
+#     # err_log = logger.Log('errors')
+#     for i in range(len(config.cameras)):
+#         thread.append(CamThread(config.cameras[i]))
+#         thread[i].start()
 
 
 def generate_frames():
@@ -39,10 +40,21 @@ def generate_frames():
 
 @app.route('/')
 def index():
+    global kill
+    kill = True
+    req_vals = dict(request.values)
+    print(req_vals)
+    if 'index' in req_vals:
+        stream_index = req_vals['index']
+        kill = False
+        print('i')
     return render_template('index.html')
 
+
 def video_stream():
-    while(True):
+    global kill
+    print(kill)
+    while kill:
         ret, frame = video.read()
         if not ret:
             break
@@ -57,8 +69,17 @@ def video_feed():
     return Response(video_stream(), mimetype= 'multipart/x-mixed-replace;boundary=frame')
 
 
+# @app.route('/stop')
+# def stop_stream(stream_index=''):
+#     if not stream_index:
+#         req_vals = dict(request.values)
+#         if 'index' in req_vals:
+#             stream_index = req_vals['index']
+#             main.thread[stream_index].stop()
+
+
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
     # main()
 
 '''
