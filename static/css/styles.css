@@ -1,0 +1,29 @@
+.vid-main{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:600px;
+}
+.vid-sec{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:198px;
+}
+h1 {
+    text-align: center;
+}
+h2 {
+    text-align: center;
+    color: blue;
+}
+.center{
+    margin-left: auto;
+    margin-right: auto;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}

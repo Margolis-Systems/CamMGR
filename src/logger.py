@@ -1,4 +1,5 @@
 from datetime import datetime
+import csv
 
 
 class Log:
@@ -6,7 +7,8 @@ class Log:
         self.dir = 'logs/{}.txt'.format(file_name)
         self.ts_format = '%Y-%m-%d %H:%M:%S'
 
-    def write(self, log):
+    def write(self, log, user='PRG'):
         ts = datetime.now().strftime(self.ts_format)
-        with open(self.dir, 'w') as lf:
-            lf.write('{} : {}'.format(ts, log))
+        with open(self.dir, 'a', encoding='utf8', newline='') as lf:
+            writer = csv.writer(lf)
+            writer.writerow([ts, user, log])

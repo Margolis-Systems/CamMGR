@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>הגדרות</h1>
+<form class="col-lg-6 offset-lg-3 center" method="POST">
+    <div class="row justify-content-center ">
+        {% for sett in settings %}
+        {% set s = settings[sett] %}
+        {% if s.type == 1 %}
+        <input type="text" class="form-control" name="{{sett}}" id="{{sett}}" placeholder="{{s.description}}" value="{{s.value}}">
+        {% else %}
+        <input type="number" class="form-control" name="{{sett}}" id="{{sett}}" placeholder="{{s.description}}" value="{{s.value}}" min="{{s.min}}" max="{{s.max}}" step="{{s.step}}">
+        {% endif %}
+        {% endfor %}
+        <button class="btn btn-success">שמור</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>תיעוד חדש</h1>
+<form class="col-lg-6 offset-lg-3 center" method="POST">
+    <div class="row justify-content-center ">
+        <input class="form-control" name="session_name" placeholder="שם תיעוד">
+        <input class="form-control" name="tester_name" placeholder="שם הבוחן">
+        <input class="form-control" name="student" placeholder="שם הנבחן">
+        <input class="form-control" name="location" placeholder="מיקום">
+        <input class="form-control" name="description" placeholder="תיאור">
+        <input class="form-control" type="number" name="duration" placeholder="משך התיעוד בדקות" value="30">
+        <button class="btn btn-success">המשך</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block body %}
+<script>createOffer();</script>
+<table class="center">
+    <tr>
+        <td colspan="3"><h1 id="title">מצלמה 1 נבחרה {מקליט}</h1></td>
+    </tr>
+    <tr>
+        <td><img class="vid-sec" src="{{ url_for('video_feed') }}?index=0"></td>
+        <td rowspan="3"><img class="vid-main" src="{{ url_for('video_feed') }}?index=0"></td>
+        <td width="120px" rowspan="2"><textarea></textarea></td>
+    </tr>
+    <tr>
+        <td><img class="vid-sec" src="{{ url_for('video_feed') }}?index=0"></td>
+    </tr>
+    <tr>
+        <td><img class="vid-sec" src="{{ url_for('video_feed') }}?index=0"></td>
+        <td><button>ok</button></td>
+    </tr>
+    <tr class="center">
+        <td>
+            {% if session.status == 'Started' %}
+            <button type="button" class="btn btn-danger" ondblclick="location.href='/record?func=stop';">סיום</button>
+            {% else %}
+            <button type="button" class="btn btn-success" onclick="location.href='/record?func=start';">התחל</button>
+            {% endif %}
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+<script>
+    function change_title(s){
+        document.getElementById('title').innerHTML = 'מצלמה 1 נבחרה {' + s + '}';
+    }
+</script>
+{% endblock %}
